@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 interface VideoStorySectionProps {
   src: string
   index: string
@@ -17,30 +19,39 @@ export function VideoStorySection({
   align = 'left',
   variant = 'default',
 }: VideoStorySectionProps) {
+  const [isPrimaryReady, setIsPrimaryReady] =
+    useState<boolean>(false)
+
   const isVertical = variant === 'vertical'
 
   return (
     <section
       className={[
         'video-story',
-        align === 'right' ? 'video-story--right' : '',
-        isVertical ? 'video-story--vertical' : '',
+        align === 'right'
+          ? 'video-story--right'
+          : '',
+        isVertical
+          ? 'video-story--vertical'
+          : '',
       ]
         .filter(Boolean)
         .join(' ')}
     >
       {isVertical ? (
         <>
-          <video
-            className="story-video story-video--background"
-            src={src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          />
+          {isPrimaryReady && (
+            <video
+              className="story-video story-video--background"
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
+          )}
 
           <video
             className="story-video story-video--foreground"
@@ -49,7 +60,10 @@ export function VideoStorySection({
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
+            onLoadedData={() =>
+              setIsPrimaryReady(true)
+            }
             aria-hidden="true"
           />
         </>
@@ -61,15 +75,10 @@ export function VideoStorySection({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
         />
       )}
-
-      <div
-        className="story-fallback"
-        aria-hidden="true"
-      />
 
       <div
         className="story-overlay"
@@ -99,6 +108,7 @@ export function VideoStorySection({
             className="text-link"
           >
             Descubrir selección
+
             <span aria-hidden="true">
               ↗
             </span>

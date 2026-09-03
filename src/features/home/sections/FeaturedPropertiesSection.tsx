@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { featuredProperties } from '../data/properties'
 import type {
@@ -36,10 +32,18 @@ export function FeaturedPropertiesSection({
     Record<string, number>
   >({})
 
-  const getSelectedImageIndex = (property: Property): number => {
+  const [openingPropertySlug, setOpeningPropertySlug] =
+    useState<string | null>(null)
+
+  const getSelectedImageIndex = (
+    property: Property,
+  ): number => {
     const index = selectedImages[property.id] ?? 0
 
-    if (index < 0 || index >= property.images.length) {
+    if (
+      index < 0 ||
+      index >= property.images.length
+    ) {
       return 0
     }
 
@@ -56,216 +60,302 @@ export function FeaturedPropertiesSection({
     }))
   }
 
-  const previousImage = (property: Property): void => {
-    const currentIndex = getSelectedImageIndex(property)
+  const previousImage = (
+    property: Property,
+  ): void => {
+    const currentIndex =
+      getSelectedImageIndex(property)
 
     const nextIndex =
       currentIndex === 0
         ? property.images.length - 1
         : currentIndex - 1
 
-    selectImage(property.id, nextIndex)
+    selectImage(
+      property.id,
+      nextIndex,
+    )
   }
 
-  const nextImage = (property: Property): void => {
-    const currentIndex = getSelectedImageIndex(property)
+  const nextImage = (
+    property: Property,
+  ): void => {
+    const currentIndex =
+      getSelectedImageIndex(property)
 
     const nextIndex =
-      currentIndex === property.images.length - 1
+      currentIndex ===
+      property.images.length - 1
         ? 0
         : currentIndex + 1
 
-    selectImage(property.id, nextIndex)
+    selectImage(
+      property.id,
+      nextIndex,
+    )
+  }
+
+  const openProperty = (
+    property: Property,
+  ): void => {
+    if (openingPropertySlug) {
+      return
+    }
+
+    setOpeningPropertySlug(
+      property.slug,
+    )
+
+    window.setTimeout(() => {
+      onOpenProperty(property.slug)
+    }, 1500)
   }
 
   return (
-    <section
-      className="properties-section"
-      id="propiedades"
-    >
-      <div className="section-shell">
-        <div className="section-heading-row">
-          <div>
-            <p className="eyebrow">PROPIEDADES DESTACADAS</p>
+    <>
+      {openingPropertySlug && (
+        <div
+          className="property-navigation-loader"
+          role="status"
+          aria-live="polite"
+          aria-label="Cargando propiedad"
+        >
+          <div className="property-navigation-loader-inner">
+            <span className="property-navigation-loader-brand">
+              ESTUDIO.
+            </span>
 
-            <h2 className="section-display">
-              Espacios elegidos con criterio.
-            </h2>
+            <span className="property-navigation-loader-label">
+              CARGANDO
+            </span>
+
+            <div className="property-navigation-loader-line">
+              <span />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <section
+        className="properties-section"
+        id="propiedades"
+      >
+        <div className="section-shell">
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow">
+                PROPIEDADES DESTACADAS
+              </p>
+
+              <h2 className="section-display">
+                Espacios elegidos con criterio.
+              </h2>
+            </div>
+
+            <p className="section-intro">
+              Una selección de propiedades donde
+              arquitectura, ubicación y experiencia
+              encuentran un equilibrio.
+            </p>
           </div>
 
-          <p className="section-intro">
-            Una selección de propiedades donde arquitectura,
-            ubicación y experiencia encuentran un equilibrio.
-          </p>
-        </div>
+          <div className="property-grid">
+            {featuredProperties.map(
+              (
+                property: Property,
+                propertyIndex: number,
+              ) => {
+                const selectedImageIndex =
+                  getSelectedImageIndex(property)
 
-        <div className="property-grid">
-          {featuredProperties.map(
-            (property: Property, propertyIndex: number) => {
-              const selectedImageIndex =
-                getSelectedImageIndex(property)
+                const selectedImage: PropertyImage =
+                  property.images[
+                    selectedImageIndex
+                  ]
 
-              const selectedImage: PropertyImage =
-                property.images[selectedImageIndex]
-
-              return (
-                <article
-                  key={property.id}
-                  className={`property-card property-card--${
-                    propertyIndex + 1
-                  }`}
-                >
-                  <div className="property-gallery">
-                    <div className="property-image-link">
-                      <img
-                        key={selectedImage.id}
-                        src={selectedImage.src}
-                        alt={selectedImage.alt}
-                        loading={
-                          propertyIndex === 0
-                            ? 'eager'
-                            : 'lazy'
+                return (
+                  <article
+                    key={property.id}
+                    className={`property-card property-card--${
+                      propertyIndex + 1
+                    }`}
+                  >
+                    <div className="property-gallery">
+                      <div
+                        className="property-image-link"
+                        role="link"
+                        tabIndex={0}
+                        aria-label={`Ver detalle de ${property.title}`}
+                        onClick={() =>
+                          openProperty(property)
                         }
-                      />
+                        onKeyDown={(event) => {
+                          if (
+                            event.key === 'Enter' ||
+                            event.key === ' '
+                          ) {
+                            event.preventDefault()
+                            openProperty(property)
+                          }
+                        }}
+                      >
+                        <img
+                          key={selectedImage.id}
+                          src={selectedImage.src}
+                          alt={selectedImage.alt}
+                          loading={
+                            propertyIndex === 0
+                              ? 'eager'
+                              : 'lazy'
+                          }
+                        />
 
-                      <span className="property-image-category">
-                        {categoryLabel[selectedImage.category]}
-                      </span>
+                        <span className="property-image-category">
+                          {
+                            categoryLabel[
+                              selectedImage.category
+                            ]
+                          }
+                        </span>
 
-                      <span className="property-image-counter">
-                        {String(
-                          selectedImageIndex + 1,
-                        ).padStart(2, '0')}{' '}
-                        /{' '}
-                        {String(
-                          property.images.length,
-                        ).padStart(2, '0')}
-                      </span>
+                        <span className="property-image-counter">
+                          {String(
+                            selectedImageIndex + 1,
+                          ).padStart(2, '0')}{' '}
+                          /{' '}
+                          {String(
+                            property.images.length,
+                          ).padStart(2, '0')}
+                        </span>
 
-                      <div className="property-gallery-controls">
                         <button
                           type="button"
-                          className="property-gallery-button"
-                          onClick={() =>
+                          className="property-gallery-side property-gallery-side--previous"
+                          onClick={(event) => {
+                            event.stopPropagation()
                             previousImage(property)
-                          }
+                          }}
                           aria-label={`Imagen anterior de ${property.title}`}
                         >
-                          <ArrowLeft size={17} />
+                          <ArrowLeft
+                            size={20}
+                            strokeWidth={1.7}
+                          />
                         </button>
 
                         <button
                           type="button"
-                          className="property-gallery-button"
-                          onClick={() =>
+                          className="property-gallery-side property-gallery-side--next"
+                          onClick={(event) => {
+                            event.stopPropagation()
                             nextImage(property)
-                          }
+                          }}
                           aria-label={`Imagen siguiente de ${property.title}`}
                         >
-                          <ArrowRight size={17} />
+                          <ArrowRight
+                            size={20}
+                            strokeWidth={1.7}
+                          />
                         </button>
                       </div>
 
-                      <button
-                        type="button"
-                        className="property-arrow"
-                        onClick={() =>
-                          onOpenProperty(property.slug)
-                        }
-                        aria-label={`Ver detalle de ${property.title}`}
-                      >
-                        <ArrowUpRight size={18} />
-                      </button>
-                    </div>
+                      <div className="property-space-selector">
+                        {property.images.map(
+                          (
+                            image: PropertyImage,
+                            imageIndex: number,
+                          ) => {
+                            const isActive =
+                              imageIndex ===
+                              selectedImageIndex
 
-                    <div className="property-space-selector">
-                      {property.images.map(
-                        (
-                          image: PropertyImage,
-                          imageIndex: number,
-                        ) => {
-                          const isActive =
-                            imageIndex === selectedImageIndex
-
-                          return (
-                            <button
-                              key={image.id}
-                              type="button"
-                              className={
-                                isActive
-                                  ? 'property-space property-space--active'
-                                  : 'property-space'
-                              }
-                              onClick={() =>
-                                selectImage(
-                                  property.id,
-                                  imageIndex,
-                                )
-                              }
-                              aria-label={`Ver ${categoryLabel[
-                                image.category
-                              ].toLowerCase()} de ${
-                                property.title
-                              }`}
-                              aria-pressed={isActive}
-                            >
-                              <img
-                                src={image.src}
-                                alt=""
-                                loading="lazy"
-                              />
-
-                              <span>
-                                {
-                                  categoryLabel[
-                                    image.category
-                                  ]
+                            return (
+                              <button
+                                key={image.id}
+                                type="button"
+                                className={
+                                  isActive
+                                    ? 'property-space property-space--active'
+                                    : 'property-space'
                                 }
-                              </span>
-                            </button>
-                          )
-                        },
-                      )}
-                    </div>
+                                onClick={() =>
+                                  selectImage(
+                                    property.id,
+                                    imageIndex,
+                                  )
+                                }
+                                aria-label={`Ver ${categoryLabel[
+                                  image.category
+                                ].toLowerCase()} de ${
+                                  property.title
+                                }`}
+                                aria-pressed={isActive}
+                              >
+                                <img
+                                  src={image.src}
+                                  alt=""
+                                  loading="lazy"
+                                />
 
-                    <p className="property-gallery-hint">
-                      {property.images.length} espacios para
-                      recorrer
-                    </p>
-                  </div>
+                                <span>
+                                  {
+                                    categoryLabel[
+                                      image.category
+                                    ]
+                                  }
+                                </span>
+                              </button>
+                            )
+                          },
+                        )}
+                      </div>
 
-                  <div className="property-info">
-                    <div>
-                      <p className="eyebrow">
-                        {property.neighborhood} ·{' '}
-                        {property.city}
+                      <p className="property-gallery-hint">
+                        {property.images.length}{' '}
+                        espacios para recorrer
                       </p>
-
-                      <h3>{property.title}</h3>
                     </div>
 
-                    <div className="property-numbers">
-                      <strong>
-                        {property.price > 0
-                          ? `${property.currency} ${priceFormatter.format(
-                              property.price,
-                            )}`
-                          : 'Precio a consultar'}
-                      </strong>
+                    <div className="property-info">
+                      <div>
+                        <p className="eyebrow">
+                          {property.neighborhood}{' '}
+                          · {property.city}
+                        </p>
 
-                      <span>
-                        {property.bedrooms} dorm. ·{' '}
-                        {property.bathrooms} baños ·{' '}
-                        {property.totalArea} m²
-                      </span>
+                        <h3>
+                          {property.title}
+                        </h3>
+                      </div>
+
+                      <div className="property-numbers">
+                        <strong>
+                          {property.price > 0
+                            ? `${
+                                property.currency
+                              } ${priceFormatter.format(
+                                property.price,
+                              )}`
+                            : 'Precio a consultar'}
+                        </strong>
+
+                        <span>
+                          {property.bedrooms}{' '}
+                          dorm. ·{' '}
+                          {property.bathrooms}{' '}
+                          baños ·{' '}
+                          {property.totalArea}{' '}
+                          m²
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              )
-            },
-          )}
+                  </article>
+                )
+              },
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

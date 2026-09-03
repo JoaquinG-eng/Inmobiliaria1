@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SiteHeader } from '../../components/layout/SiteHeader'
+
 import { GeneralContactForm } from '../contact/GeneralContactForm'
 import { cinematicMedia } from './data/media'
 import { FeaturedPropertiesSection } from './sections/FeaturedPropertiesSection'
@@ -27,7 +27,7 @@ export function HomePage({
 
   return (
     <main>
-      <SiteHeader />
+
 
       <HeroSection />
 
