@@ -1,0 +1,651 @@
+/* =========================================================
+   BUY PROPERTIES — EDITORIAL / COMPACT
+   ========================================================= */
+
+.buy-properties-section {
+  padding-block:
+    clamp(5rem, 8vw, 8rem);
+
+  color: #171714;
+
+  background: #efede8;
+}
+
+.buy-properties-heading {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 8fr)
+    minmax(15rem, 4fr);
+
+  align-items: end;
+
+  gap:
+    clamp(2rem, 5vw, 6rem);
+
+  padding-bottom:
+    clamp(2.5rem, 4vw, 4rem);
+
+  border-bottom:
+    1px solid rgba(0, 0, 0, .14);
+}
+
+.buy-properties-heading .eyebrow {
+  color: #8c765c;
+}
+
+.buy-properties-heading h2 {
+  max-width: 11ch;
+
+  margin: .8rem 0 0;
+
+  font-size:
+    clamp(2.8rem, 5vw, 5.8rem);
+
+  font-weight: 500;
+
+  line-height: .9;
+
+  letter-spacing: -.06em;
+}
+
+.buy-properties-heading-side {
+  align-self: end;
+
+  display: grid;
+
+  gap: 1rem;
+}
+
+.buy-properties-heading-side > span {
+  color: #24241f;
+
+  font-size:
+    clamp(2.5rem, 4.5vw, 4.8rem);
+
+  font-weight: 400;
+
+  line-height: .82;
+
+  letter-spacing: -.055em;
+}
+
+.buy-properties-heading-side p {
+  max-width: 25rem;
+
+  margin: 0;
+
+  color: #716d65;
+
+  font-size: .94rem;
+
+  line-height: 1.65;
+}
+
+.buy-properties-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, 1fr);
+
+  gap:
+    clamp(2.5rem, 5vw, 5rem)
+    clamp(1rem, 2vw, 2rem);
+
+  margin-top:
+    clamp(3.5rem, 6vw, 6rem);
+}
+
+.buy-property-card {
+  min-width: 0;
+}
+
+.buy-property-card--1 {
+  grid-column:
+    1 / span 7;
+}
+
+.buy-property-card--2 {
+  grid-column:
+    9 / span 4;
+
+  margin-top: 6rem;
+}
+
+.buy-property-card--3 {
+  grid-column:
+    3 / span 5;
+
+  margin-top: 1rem;
+}
+
+.buy-property-card--4 {
+  grid-column:
+    8 / span 5;
+
+  margin-top: 5rem;
+}
+
+.buy-property-image {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 0;
+
+  color: white;
+
+  background: #d8d4cc;
+
+  cursor: pointer;
+}
+
+.buy-property-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  transition:
+    transform .8s var(--ease);
+}
+
+.buy-property-card--2 .buy-property-image img,
+.buy-property-card--4 .buy-property-image img {
+  aspect-ratio: 3 / 4;
+}
+
+.buy-property-image:hover img {
+  transform: scale(1.025);
+}
+
+.buy-property-image-shade {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, .06),
+      rgba(0, 0, 0, .25)
+    );
+}
+
+.buy-property-index {
+  position: absolute;
+
+  top: 1rem;
+  left: 1rem;
+
+  font-size: .65rem;
+
+  letter-spacing: .15em;
+}
+
+.buy-property-action,
+.rent-property-action {
+  position: absolute;
+
+  right: 1rem;
+  bottom: 1rem;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 3rem;
+  height: 3rem;
+
+  border-radius: 50%;
+
+  color: #171714;
+
+  background:
+    rgba(245, 243, 238, .94);
+
+  transition:
+    transform .35s var(--ease),
+    background .35s ease;
+}
+
+.buy-property-image:hover .buy-property-action,
+.rent-property-image:hover .rent-property-action {
+  transform: rotate(45deg);
+
+  background: white;
+}
+
+.property-dual-badge {
+  position: absolute;
+
+  top: 1rem;
+  right: 1rem;
+
+  padding:
+    .56rem
+    .76rem;
+
+  border:
+    1px solid rgba(255, 255, 255, .46);
+
+  border-radius: 999px;
+
+  color: white;
+
+  background:
+    rgba(20, 22, 18, .42);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  font-size: .58rem;
+
+  letter-spacing: .13em;
+
+  text-transform: uppercase;
+}
+
+.buy-property-info {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 1.5rem;
+
+  margin-top: .9rem;
+
+  padding-top: .9rem;
+
+  border-top:
+    1px solid rgba(0, 0, 0, .15);
+}
+
+.buy-property-info p,
+.rent-property-copy p {
+  margin: 0 0 .4rem;
+
+  color: #817b72;
+
+  font-size: .64rem;
+
+  letter-spacing: .11em;
+
+  text-transform: uppercase;
+}
+
+.buy-property-info h3,
+.rent-property-copy h3 {
+  margin: 0;
+
+  font-size:
+    clamp(1.3rem, 2vw, 2.25rem);
+
+  font-weight: 500;
+
+  letter-spacing: -.045em;
+}
+
+.buy-property-price {
+  display: grid;
+
+  align-content: start;
+
+  gap: .3rem;
+
+  text-align: right;
+}
+
+.buy-property-price > span,
+.rent-property-price > span {
+  color: #89837a;
+
+  font-size: .58rem;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+.buy-property-price strong,
+.rent-property-price strong {
+  font-size: .96rem;
+
+  font-weight: 600;
+}
+
+.buy-property-price small,
+.rent-property-price small {
+  color: #777168;
+
+  font-size: .68rem;
+}
+
+
+/* =========================================================
+   RENT PROPERTIES
+   ========================================================= */
+
+.rent-properties-section {
+  padding-block:
+    clamp(7rem, 12vw, 12rem);
+
+  color: #f1efe9;
+
+  background: #121512;
+}
+
+.rent-properties-heading {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 8fr)
+    minmax(16rem, 4fr);
+
+  align-items: end;
+
+  gap: 3rem;
+
+  padding-bottom:
+    clamp(3rem, 6vw, 6rem);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, .16);
+}
+
+.rent-properties-heading .eyebrow {
+  color: var(--warm);
+}
+
+.rent-properties-heading h2 {
+  max-width: 9ch;
+
+  margin:
+    1rem
+    0
+    0;
+
+  font-size:
+    clamp(3rem, 6.4vw, 7rem);
+
+  font-weight: 500;
+
+  line-height: .87;
+
+  letter-spacing: -.065em;
+}
+
+.rent-properties-heading-side {
+  display: grid;
+
+  gap: 1.5rem;
+}
+
+.rent-properties-heading-side > span {
+  color: rgba(255, 255, 255, .86);
+
+  font-size:
+    clamp(3rem, 6vw, 6rem);
+
+  line-height: .8;
+
+  letter-spacing: -.06em;
+}
+
+.rent-properties-heading-side p {
+  max-width: 28rem;
+
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, .58);
+
+  line-height: 1.7;
+}
+
+.rent-properties-grid {
+  margin-top:
+    clamp(4rem, 8vw, 8rem);
+
+  border-top:
+    1px solid rgba(255, 255, 255, .15);
+}
+
+.rent-property-card {
+  display: grid;
+
+  grid-template-columns:
+    4rem
+    minmax(18rem, 5fr)
+    minmax(0, 7fr);
+
+  align-items: center;
+
+  gap:
+    clamp(1.5rem, 4vw, 4rem);
+
+  padding-block:
+    clamp(2rem, 4vw, 4rem);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, .15);
+}
+
+.rent-property-number {
+  align-self: start;
+
+  padding-top: .5rem;
+
+  color:
+    rgba(255, 255, 255, .38);
+
+  font-size: .68rem;
+
+  letter-spacing: .15em;
+}
+
+.rent-property-image {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 0;
+
+  color: white;
+
+  background: #252a25;
+
+  cursor: pointer;
+}
+
+.rent-property-image img {
+  width: 100%;
+
+  aspect-ratio: 16 / 10;
+
+  object-fit: cover;
+
+  transition:
+    transform .8s var(--ease);
+}
+
+.rent-property-image:hover img {
+  transform: scale(1.03);
+}
+
+.rent-property-image-shade {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, .04),
+      rgba(0, 0, 0, .25)
+    );
+}
+
+.rent-property-copy {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap:
+    2rem;
+
+  align-items: end;
+}
+
+.rent-property-copy p {
+  color:
+    rgba(255, 255, 255, .48);
+}
+
+.rent-property-meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: .5rem 1rem;
+
+  margin-top: 1.4rem;
+
+  color:
+    rgba(255, 255, 255, .56);
+
+  font-size: .7rem;
+}
+
+.rent-property-price {
+  display: grid;
+
+  gap: .4rem;
+
+  min-width: 10rem;
+
+  text-align: right;
+}
+
+.rent-property-price > span {
+  color:
+    rgba(255, 255, 255, .4);
+}
+
+.rent-property-price small {
+  color:
+    rgba(255, 255, 255, .55);
+}
+
+
+/* =========================================================
+   BUY / RENT RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .buy-properties-heading,
+  .rent-properties-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .buy-properties-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap:
+      3.5rem
+      1.25rem;
+  }
+
+  .buy-property-card--1,
+  .buy-property-card--2,
+  .buy-property-card--3,
+  .buy-property-card--4 {
+    grid-column: auto;
+
+    margin-top: 0;
+  }
+
+  .buy-property-card--2
+  .buy-property-image img,
+  .buy-property-card--4
+  .buy-property-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .rent-property-card {
+    grid-template-columns:
+      3rem
+      minmax(0, 1fr);
+
+    align-items: start;
+  }
+
+  .rent-property-copy {
+    grid-column: 2;
+
+    grid-template-columns:
+      1fr
+      auto;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .buy-properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .buy-property-info {
+    grid-template-columns: 1fr;
+  }
+
+  .buy-property-price {
+    text-align: left;
+  }
+
+  .rent-property-card {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+  }
+
+  .rent-property-number {
+    grid-column: 1;
+  }
+
+  .rent-property-image {
+    grid-column: 1;
+  }
+
+  .rent-property-copy {
+    grid-column: 1;
+
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+  .rent-property-price {
+    text-align: left;
+  }
+}
