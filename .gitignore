@@ -4,3 +4,6 @@ dist
 .env.local
 .DS_Store
 videos-originales/
+robots.txt
+sitemap.xml
+FRONTEND_HANDOFF_PRIVADO.md
