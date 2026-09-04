@@ -3,6 +3,7 @@ import { ScrollToTopHint } from '../components/ui/ScrollToTopHint'
 import { BuyPage } from '../features/buy/BuyPage'
 import { HomePage } from '../features/home/HomePage'
 import { allProperties } from '../features/home/data/properties'
+import { NotFoundPage } from '../features/not-found/NotFoundPage'
 import { PropertyDetailPage } from '../features/property/PropertyDetailPage'
 import { RentPage } from '../features/rent/RentPage'
 import { SellPage } from '../features/sell/SellPage'
@@ -28,6 +29,16 @@ const DEFAULT_SEO: SeoState = {
   title: 'INMO — Propiedades',
   description:
     'Propiedades seleccionadas por arquitectura, ubicación y experiencia en Argentina.',
+}
+
+const NOT_FOUND_SEO: SeoState = {
+  title: 'Página no encontrada | INMO',
+  description:
+    'La página que buscás no existe o ya no se encuentra disponible.',
+}
+
+function isValidPath(): boolean {
+  return window.location.pathname === '/'
 }
 
 function getSeoState(
@@ -96,8 +107,31 @@ export default function App() {
   const [propertyOrigin, setPropertyOrigin] =
     useState<PropertyOrigin>('home')
 
+  const [isNotFound, setIsNotFound] =
+    useState<boolean>(() => !isValidPath())
+
   useEffect(() => {
-    const seo = getSeoState(view)
+    const handlePopState = (): void => {
+      setIsNotFound(!isValidPath())
+    }
+
+    window.addEventListener(
+      'popstate',
+      handlePopState,
+    )
+
+    return () => {
+      window.removeEventListener(
+        'popstate',
+        handlePopState,
+      )
+    }
+  }, [])
+
+  useEffect(() => {
+    const seo = isNotFound
+      ? NOT_FOUND_SEO
+      : getSeoState(view)
 
     document.title = seo.title
 
@@ -125,7 +159,14 @@ export default function App() {
       'meta[name="twitter:description"]',
       seo.description,
     )
-  }, [view])
+
+    setMetaContent(
+      'meta[name="robots"]',
+      isNotFound
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large',
+    )
+  }, [view, isNotFound])
 
   const scrollTop = (): void => {
     window.scrollTo({
@@ -211,6 +252,30 @@ export default function App() {
     }
 
     handleOpenHome()
+  }
+
+  const handleBackFromNotFound = (): void => {
+    window.history.replaceState(
+      {},
+      '',
+      '/',
+    )
+
+    setIsNotFound(false)
+
+    setView({
+      type: 'home',
+    })
+
+    scrollTop()
+  }
+
+  if (isNotFound) {
+    return (
+      <NotFoundPage
+        onBackHome={handleBackFromNotFound}
+      />
+    )
   }
 
   const isHomeActive =

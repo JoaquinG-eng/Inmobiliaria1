@@ -1,0 +1,11 @@
+{
+  "name": "INMO — Propiedades",
+  "short_name": "INMO",
+  "description": "Propiedades seleccionadas por arquitectura, ubicación y experiencia en Argentina.",
+  "lang": "es-AR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808"
+}
