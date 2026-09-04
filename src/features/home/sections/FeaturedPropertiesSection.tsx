@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import type { TouchEvent } from 'react'
+import { createPortal } from 'react-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { featuredProperties } from '../data/properties'
@@ -34,6 +36,15 @@ export function FeaturedPropertiesSection({
 
   const [openingPropertySlug, setOpeningPropertySlug] =
     useState<string | null>(null)
+
+  const touchStartRef = useRef<{
+    propertyId: string
+    x: number
+    y: number
+  } | null>(null)
+
+  const suppressClickRef =
+    useRef<boolean>(false)
 
   const getSelectedImageIndex = (
     property: Property,
@@ -107,36 +118,109 @@ export function FeaturedPropertiesSection({
     )
 
     window.setTimeout(() => {
+      setOpeningPropertySlug(null)
       onOpenProperty(property.slug)
-    }, 1500)
+    }, 420)
   }
+
+  const handleTouchStart = (
+    property: Property,
+    event: TouchEvent<HTMLDivElement>,
+  ): void => {
+    const touch = event.touches[0]
+
+    if (!touch) {
+      return
+    }
+
+    touchStartRef.current = {
+      propertyId: property.id,
+      x: touch.clientX,
+      y: touch.clientY,
+    }
+  }
+
+  const handleTouchEnd = (
+    property: Property,
+    event: TouchEvent<HTMLDivElement>,
+  ): void => {
+    const start =
+      touchStartRef.current
+
+    const touch =
+      event.changedTouches[0]
+
+    touchStartRef.current = null
+
+    if (
+      !start ||
+      !touch ||
+      start.propertyId !== property.id
+    ) {
+      return
+    }
+
+    const deltaX =
+      touch.clientX - start.x
+
+    const deltaY =
+      touch.clientY - start.y
+
+    const isHorizontalSwipe =
+      Math.abs(deltaX) >= 45 &&
+      Math.abs(deltaX) >
+        Math.abs(deltaY) * 1.2
+
+    if (!isHorizontalSwipe) {
+      return
+    }
+
+    suppressClickRef.current = true
+
+    if (deltaX > 0) {
+      previousImage(property)
+    } else {
+      nextImage(property)
+    }
+
+    window.setTimeout(() => {
+      suppressClickRef.current = false
+    }, 350)
+  }
+
+  const loader =
+    openingPropertySlug &&
+    typeof document !== 'undefined'
+      ? createPortal(
+          <div
+            className="property-navigation-loader"
+            role="status"
+            aria-live="polite"
+            aria-label="Cargando propiedad"
+          >
+            <div className="property-navigation-loader-inner">
+              <span className="property-navigation-loader-brand">
+                ESTUDIO.
+              </span>
+
+              <span className="property-navigation-loader-label">
+                CARGANDO
+              </span>
+
+              <div className="property-navigation-loader-line">
+                <span />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null
 
   return (
     <>
-      {openingPropertySlug && (
-        <div
-          className="property-navigation-loader"
-          role="status"
-          aria-live="polite"
-          aria-label="Cargando propiedad"
-        >
-          <div className="property-navigation-loader-inner">
-            <span className="property-navigation-loader-brand">
-              ESTUDIO.
-            </span>
+      {loader}
 
-            <span className="property-navigation-loader-label">
-              CARGANDO
-            </span>
-
-            <div className="property-navigation-loader-line">
-              <span />
-            </div>
-          </div>
-        </div>
-      )}
-
-      <section
+<section
         className="properties-section"
         id="propiedades"
       >
@@ -186,8 +270,26 @@ export function FeaturedPropertiesSection({
                         role="link"
                         tabIndex={0}
                         aria-label={`Ver detalle de ${property.title}`}
-                        onClick={() =>
+                        onClick={() => {
+                          if (
+                            suppressClickRef.current
+                          ) {
+                            return
+                          }
+
                           openProperty(property)
+                        }}
+                        onTouchStart={(event) =>
+                          handleTouchStart(
+                            property,
+                            event,
+                          )
+                        }
+                        onTouchEnd={(event) =>
+                          handleTouchEnd(
+                            property,
+                            event,
+                          )
                         }
                         onKeyDown={(event) => {
                           if (

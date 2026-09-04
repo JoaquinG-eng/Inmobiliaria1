@@ -46,7 +46,7 @@ function MapController({
       [location.lat, location.lng],
       location.zoom,
       {
-        duration: 1.4,
+        duration: 1.1,
       },
     )
   }, [
@@ -71,6 +71,10 @@ export function PropertyMap({
         ]}
         zoom={location.zoom}
         scrollWheelZoom={false}
+        dragging
+        touchZoom
+        doubleClickZoom
+        zoomControl
         className="property-map"
       >
         <TileLayer

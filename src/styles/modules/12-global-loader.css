@@ -1,0 +1,160 @@
+/* =========================================================
+   GLOBAL LOADER
+   PORTAL DIRECTO A BODY
+   ========================================================= */
+
+.global-loader {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2147483647;
+
+  width: 100vw;
+
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+
+  display: grid;
+
+  place-items: center;
+
+  overflow: hidden;
+
+  color: #f4f2ed;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111310 0%,
+      #181b18 55%,
+      #101210 100%
+    );
+
+  pointer-events: auto;
+
+  isolation: isolate;
+}
+
+.global-loader-inner {
+  display: grid;
+
+  justify-items: center;
+
+  gap: 1.15rem;
+
+  width:
+    min(
+      30rem,
+      calc(100vw - 3rem)
+    );
+}
+
+.global-loader-brand {
+  color: #f4f2ed;
+
+  font-size: 1rem;
+  font-weight: 720;
+
+  letter-spacing: -.035em;
+}
+
+.global-loader-label {
+  color:
+    rgba(255, 255, 255, .72);
+
+  font-size: .72rem;
+
+  letter-spacing: .24em;
+
+  text-transform: uppercase;
+}
+
+.global-loader-line {
+  position: relative;
+
+  width: 100%;
+  height: 5px;
+
+  margin-top: .8rem;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, .12);
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255, 255, 255, .04);
+}
+
+.global-loader-line span {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 40%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(209, 179, 138, .4),
+      #d1b38a,
+      #f0d9b8,
+      #d1b38a,
+      rgba(209, 179, 138, .4)
+    );
+
+  box-shadow:
+    0 0 12px
+      rgba(209, 179, 138, .55),
+    0 0 28px
+      rgba(209, 179, 138, .36);
+
+  animation:
+    global-loader-progress
+    1.5s
+    cubic-bezier(.76, 0, .24, 1)
+    infinite;
+}
+
+@keyframes global-loader-progress {
+  from {
+    left: -40%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .global-loader-inner {
+    gap: .9rem;
+
+    width:
+      min(
+        19rem,
+        calc(100vw - 3rem)
+      );
+  }
+
+  .global-loader-brand {
+    font-size: .9rem;
+  }
+
+  .global-loader-label {
+    font-size: .62rem;
+  }
+
+  .global-loader-line {
+    height: 4px;
+  }
+}

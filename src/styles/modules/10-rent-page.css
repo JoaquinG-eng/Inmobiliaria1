@@ -16,37 +16,22 @@
 
 .catalog-page--rent .catalog-page-hero-overlay {
   background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, .14) 0%,
-      rgba(0, 0, 0, .20) 45%,
-      rgba(0, 0, 0, .72) 100%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0, 0, 0, .50) 0%,
-      rgba(0, 0, 0, .16) 55%,
-      transparent 100%
-    );
+    linear-gradient(180deg, rgba(0, 0, 0, .14) 0%, rgba(0, 0, 0, .20) 45%, rgba(0, 0, 0, .72) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, .50) 0%, rgba(0, 0, 0, .16) 55%, transparent 100%);
 }
 
 .catalog-page--rent .catalog-page-hero-content {
   display: grid;
 
-  grid-template-columns:
-    minmax(0, 8fr)
-    minmax(18rem, 4fr);
+  grid-template-columns: minmax(0, 8fr) minmax(18rem, 4fr);
 
   align-items: end;
 
-  gap:
-    clamp(2.5rem, 6vw, 7rem);
+  gap: clamp(2.5rem, 6vw, 7rem);
 
-  padding-top:
-    clamp(8rem, 11vw, 10rem);
+  padding-top: clamp(8rem, 11vw, 10rem);
 
-  padding-bottom:
-    clamp(3rem, 5vw, 5rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
 }
 
 .catalog-page--rent .catalog-page-hero-content .eyebrow {
@@ -64,14 +49,15 @@
 
   margin: 0;
 
-  font-size:
-    clamp(3rem, 5vw, 6rem);
+  font-size: clamp(3rem, 5vw, 6rem);
 
   font-weight: 500;
 
   line-height: .88;
 
   letter-spacing: -.06em;
+
+  overflow-wrap: anywhere;
 }
 
 .catalog-page--rent .catalog-page-hero-content > p:not(.eyebrow) {
@@ -85,11 +71,9 @@
 
   padding-bottom: .35rem;
 
-  color:
-    rgba(255, 255, 255, .70);
+  color: rgba(255, 255, 255, .70);
 
-  font-size:
-    clamp(.92rem, 1vw, 1.04rem);
+  font-size: clamp(.92rem, 1vw, 1.04rem);
 
   line-height: 1.7;
 }
@@ -99,145 +83,115 @@
    RENT CATALOG
    ========================================================= */
 
-.rent-properties-section {
-  padding-block:
-    clamp(5rem, 8vw, 8rem);
+.catalog-page--rent .rent-properties-section {
+  padding-block: clamp(5rem, 8vw, 8rem);
 
   color: #f0eee8;
 
-  background:
-    linear-gradient(
-      180deg,
-      #111411 0%,
-      #0d100e 100%
-    );
+  background: linear-gradient(180deg, #111411 0%, #0d100e 100%);
 }
 
-.rent-properties-heading {
-  grid-template-columns:
-    minmax(0, 8fr)
-    minmax(15rem, 4fr);
+.catalog-page--rent .rent-properties-heading {
+  grid-template-columns: minmax(0, 8fr) minmax(15rem, 4fr);
 
-  gap:
-    clamp(2rem, 5vw, 6rem);
+  gap: clamp(2rem, 5vw, 6rem);
 
-  padding-bottom:
-    clamp(2.5rem, 4vw, 4rem);
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
 
-  border-bottom:
-    1px solid
-    rgba(255, 255, 255, .13);
+  border-bottom: 1px solid rgba(255, 255, 255, .13);
 }
 
-.rent-properties-heading .eyebrow {
+.catalog-page--rent .rent-properties-heading .eyebrow {
   color: #c9a77d;
 }
 
-.rent-properties-heading h2 {
+.catalog-page--rent .rent-properties-heading h2 {
   max-width: 11ch;
 
   margin-top: .8rem;
 
-  font-size:
-    clamp(2.8rem, 5vw, 5.7rem);
+  font-size: clamp(2.8rem, 5vw, 5.7rem);
 
   line-height: .9;
 
   letter-spacing: -.06em;
 }
 
-.rent-properties-heading-side {
+.catalog-page--rent .rent-properties-heading-side {
   align-self: end;
 
   gap: 1rem;
 }
 
-.rent-properties-heading-side > span {
-  color:
-    rgba(255, 255, 255, .88);
+.catalog-page--rent .rent-properties-heading-side > span {
+  color: rgba(255, 255, 255, .88);
 
-  font-size:
-    clamp(2.5rem, 4.3vw, 4.7rem);
+  font-size: clamp(2.5rem, 4.3vw, 4.7rem);
 
   line-height: .82;
 
   letter-spacing: -.055em;
 }
 
-.rent-properties-heading-side p {
+.catalog-page--rent .rent-properties-heading-side p {
   max-width: 25rem;
 
-  color:
-    rgba(255, 255, 255, .55);
+  color: rgba(255, 255, 255, .55);
 
   font-size: .94rem;
 
   line-height: 1.65;
 }
 
+.catalog-page--rent .rent-properties-grid {
+  margin-top: clamp(3.5rem, 6vw, 6rem);
 
-/* =========================================================
-   RENT LIST — MORE EDITORIAL
-   ========================================================= */
-
-.rent-properties-grid {
-  margin-top:
-    clamp(3.5rem, 6vw, 6rem);
-
-  border-top:
-    1px solid
-    rgba(255, 255, 255, .12);
+  border-top: 1px solid rgba(255, 255, 255, .12);
 }
 
-.rent-property-card {
-  grid-template-columns:
-    3.25rem
-    minmax(16rem, 4.5fr)
-    minmax(0, 7.5fr);
+.catalog-page--rent .rent-property-card {
+  grid-template-columns: 3.25rem minmax(16rem, 4.5fr) minmax(0, 7.5fr);
 
-  gap:
-    clamp(1.5rem, 3.5vw, 3.5rem);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
 
-  padding-block:
-    clamp(1.8rem, 3.2vw, 3.2rem);
+  padding-block: clamp(1.8rem, 3.2vw, 3.2rem);
 
-  border-bottom:
-    1px solid
-    rgba(255, 255, 255, .12);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 
-.rent-property-number {
+.catalog-page--rent .rent-property-number {
   padding-top: .35rem;
 
-  color:
-    rgba(255, 255, 255, .32);
+  color: rgba(255, 255, 255, .32);
 
   font-size: .62rem;
 
   letter-spacing: .14em;
 }
 
-.rent-property-image {
+.catalog-page--rent .rent-property-image {
   background: #1b211c;
 }
 
-.rent-property-image img {
+.catalog-page--rent .rent-property-image img {
   aspect-ratio: 16 / 9;
 
   transition:
-    transform .7s var(--ease),
-    filter .5s ease;
+    transform
+    .52s
+    var(--ease);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.rent-property-image:hover img {
-  transform: scale(1.025);
-
-  filter:
-    saturate(1.03)
-    brightness(1.03);
+.catalog-page--rent .rent-property-image:hover img {
+  transform:
+    translate3d(0, 0, 0)
+    scale(1.025);
 }
 
-.rent-property-image-shade {
+.catalog-page--rent .rent-property-image-shade {
   background:
     linear-gradient(
       180deg,
@@ -246,20 +200,16 @@
     );
 }
 
-.rent-property-action {
+.catalog-page--rent .rent-property-action {
   width: 3rem;
+
   height: 3rem;
 
   background:
     rgba(244, 242, 237, .92);
 }
 
-
-/* =========================================================
-   RENT COPY
-   ========================================================= */
-
-.rent-property-copy {
+.catalog-page--rent .rent-property-copy {
   grid-template-columns:
     minmax(0, 1fr)
     auto;
@@ -270,12 +220,12 @@
   align-items: end;
 }
 
-.rent-property-copy p {
+.catalog-page--rent .rent-property-copy p {
   color:
     rgba(255, 255, 255, .42);
 }
 
-.rent-property-copy h3 {
+.catalog-page--rent .rent-property-copy h3 {
   max-width: 13ch;
 
   color: #f2f0ea;
@@ -288,7 +238,7 @@
   letter-spacing: -.05em;
 }
 
-.rent-property-meta {
+.catalog-page--rent .rent-property-meta {
   gap: .45rem 1rem;
 
   margin-top: 1.2rem;
@@ -299,7 +249,7 @@
   font-size: .68rem;
 }
 
-.rent-property-price {
+.catalog-page--rent .rent-property-price {
   gap: .35rem;
 
   min-width: 11rem;
@@ -307,12 +257,12 @@
   text-align: right;
 }
 
-.rent-property-price > span {
+.catalog-page--rent .rent-property-price > span {
   color:
     rgba(255, 255, 255, .34);
 }
 
-.rent-property-price strong {
+.catalog-page--rent .rent-property-price strong {
   color: #f3f0e9;
 
   font-size:
@@ -321,22 +271,17 @@
   font-weight: 560;
 }
 
-.rent-property-price small {
+.catalog-page--rent .rent-property-price small {
   color:
     rgba(255, 255, 255, .48);
 }
-
-
-/* =========================================================
-   DUAL OPERATION BADGE ON RENT PAGE
-   ========================================================= */
 
 .catalog-page--rent .property-dual-badge {
   border-color:
     rgba(255, 255, 255, .38);
 
   background:
-    rgba(16, 19, 16, .56);
+    rgba(16, 19, 16, .62);
 }
 
 
@@ -347,15 +292,17 @@
 @media (max-width: 900px) {
 
   .catalog-page--rent .catalog-page-hero {
-    min-height: 48rem;
+    min-height: 44rem;
   }
 
   .catalog-page--rent .catalog-page-hero-content {
     grid-template-columns: 1fr;
 
-    gap: 1.5rem;
+    gap: 1.25rem;
 
-    padding-top: 8rem;
+    padding-top: 7.5rem;
+
+    padding-bottom: 3.25rem;
   }
 
   .catalog-page--rent .catalog-page-hero-content h1,
@@ -363,15 +310,25 @@
     grid-column: 1;
   }
 
+  .catalog-page--rent .catalog-page-hero-content h1 {
+    max-width: 11ch;
+
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
   .catalog-page--rent .catalog-page-hero-content > p:not(.eyebrow) {
     max-width: 32rem;
+
+    padding-bottom: 0;
   }
 
-  .rent-properties-heading {
+  .catalog-page--rent .rent-properties-heading {
     grid-template-columns: 1fr;
+
+    gap: 1.75rem;
   }
 
-  .rent-property-card {
+  .catalog-page--rent .rent-property-card {
     grid-template-columns:
       2.5rem
       minmax(0, 1fr);
@@ -379,58 +336,118 @@
     align-items: start;
   }
 
-  .rent-property-copy {
+  .catalog-page--rent .rent-property-image,
+  .catalog-page--rent .rent-property-copy {
     grid-column: 2;
+  }
+
+  .catalog-page--rent .rent-property-copy {
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
   }
 }
 
 @media (max-width: 640px) {
 
   .catalog-page--rent .catalog-page-hero {
-    min-height: 39rem;
+    min-height: 36rem;
   }
 
   .catalog-page--rent .catalog-page-hero-content {
-    padding-top: 7rem;
+    gap: 1rem;
+
+    padding-top: 6.5rem;
 
     padding-bottom: 2.5rem;
   }
 
   .catalog-page--rent .catalog-page-hero-content h1 {
-    max-width: 10ch;
+    max-width: 11ch;
 
     font-size:
-      clamp(2.9rem, 12vw, 4.3rem);
+      clamp(2.45rem, 10.5vw, 3.7rem);
+
+    line-height: .91;
   }
 
-  .rent-properties-heading h2 {
+  .catalog-page--rent .catalog-page-hero-content > p:not(.eyebrow) {
+    font-size: .9rem;
+
+    line-height: 1.58;
+  }
+
+  .catalog-page--rent .rent-properties-heading h2 {
     font-size:
-      clamp(2.6rem, 11vw, 4.1rem);
+      clamp(2.35rem, 10vw, 3.35rem);
   }
 
-  .rent-properties-heading-side > span {
-    font-size: 3rem;
+  .catalog-page--rent .rent-properties-heading-side > span {
+    font-size: 2.65rem;
   }
 
-  .rent-property-card {
+  .catalog-page--rent .rent-property-card {
+    grid-template-columns: 1fr;
+
+    gap: .85rem;
+  }
+
+  .catalog-page--rent .rent-property-number,
+  .catalog-page--rent .rent-property-image,
+  .catalog-page--rent .rent-property-copy {
+    grid-column: 1;
+  }
+
+  .catalog-page--rent .rent-property-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .catalog-page--rent .rent-property-copy {
     grid-template-columns: 1fr;
 
     gap: 1rem;
   }
 
-  .rent-property-number,
-  .rent-property-image,
-  .rent-property-copy {
-    grid-column: 1;
-  }
+  .catalog-page--rent .rent-property-price {
+    min-width: 0;
 
-  .rent-property-copy {
-    grid-template-columns: 1fr;
-
-    gap: 1.4rem;
-  }
-
-  .rent-property-price {
     text-align: left;
+  }
+}
+
+@media (max-width: 390px) {
+
+  .catalog-page--rent .catalog-page-hero {
+    min-height: 34rem;
+  }
+
+  .catalog-page--rent .catalog-page-hero-content {
+    padding-top: 6rem;
+
+    padding-bottom: 2.25rem;
+  }
+
+  .catalog-page--rent .catalog-page-hero-content h1 {
+    font-size:
+      clamp(2.25rem, 10vw, 3.2rem);
+  }
+
+  .catalog-page--rent .rent-properties-heading h2 {
+    font-size:
+      clamp(2.2rem, 9.5vw, 3rem);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+
+  .catalog-page--rent .rent-property-image:hover img {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .catalog-page--rent .rent-property-image img {
+    transition: none;
   }
 }

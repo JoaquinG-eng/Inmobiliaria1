@@ -1,8 +1,21 @@
 /* =========================================================
    TABLET / MOBILE
+   HOME RESPONSIVE — R-01
    ========================================================= */
 
 @media (max-width: 900px) {
+
+  html,
+  body {
+    max-width: 100%;
+
+    overflow-x: hidden;
+  }
+
+
+  /* =======================================================
+     HEADER
+     ======================================================= */
 
   .desktop-nav {
     display: none;
@@ -10,31 +23,148 @@
 
   .site-header {
     grid-template-columns:
-      1fr
+      minmax(0, 1fr)
       auto;
+
+    gap: 1rem;
+
+    padding:
+      1.15rem
+      var(--pad);
   }
 
-  .hero-content,
+  .brand {
+    min-width: 0;
+  }
+
+  .menu-button {
+    flex: 0 0 auto;
+  }
+
+
+  /* =======================================================
+     HERO
+     ======================================================= */
+
+  .hero {
+    min-height:
+      min(
+        52rem,
+        100svh
+      );
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+
+    align-content: end;
+
+    gap: 2rem;
+
+    min-height:
+      min(
+        52rem,
+        100svh
+      );
+
+    padding-top: 7rem;
+
+    padding-bottom:
+      clamp(
+        2rem,
+        5vw,
+        3rem
+      );
+  }
+
+  .hero-title-wrap {
+    min-width: 0;
+  }
+
+  .hero-title {
+    max-width: 8.8ch;
+
+    font-size:
+      clamp(
+        3.5rem,
+        10vw,
+        6.4rem
+      );
+
+    line-height: .84;
+  }
+
+  .hero-side {
+    max-width: 29rem;
+
+    gap: .9rem;
+  }
+
+  .hero-side-copy {
+    font-size:
+      clamp(
+        .92rem,
+        1.8vw,
+        1.02rem
+      );
+
+    line-height: 1.55;
+  }
+
+
+  /* =======================================================
+     GENERIC SECTION HEADINGS
+     ======================================================= */
+
   .section-heading-row,
   .locations-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-content {
-    align-content: end;
-
-    gap: 2.5rem;
+  .section-heading-row {
+    gap: 1.6rem;
   }
 
-  .hero-side {
-    max-width: 30rem;
+  .section-display {
+    max-width: 11ch;
+
+    font-size:
+      clamp(
+        3rem,
+        8vw,
+        5.2rem
+      );
+
+    line-height: .92;
+  }
+
+  .section-intro {
+    max-width: 31rem;
   }
 
 
-  /* Manifesto */
+  /* =======================================================
+     MANIFESTO
+     ======================================================= */
+
+  .manifesto {
+    padding-block:
+      clamp(
+        5rem,
+        10vw,
+        8rem
+      );
+  }
 
   .manifesto-grid {
     grid-template-columns: 1fr;
+
+    margin-top:
+      clamp(
+        3rem,
+        7vw,
+        5rem
+      );
   }
 
   .manifesto-item,
@@ -53,23 +183,55 @@
       var(--line);
   }
 
+  .manifesto-item:last-child {
+    border-bottom: 0;
+  }
+
   .manifesto-item h3 {
-    margin-top: 3.5rem;
+    margin:
+      3rem
+      0
+      1rem;
+
+    font-size:
+      clamp(
+        1.8rem,
+        5vw,
+        3rem
+      );
   }
 
 
-  /* Stories */
+  /* =======================================================
+     STORIES
+     ======================================================= */
 
   .story-grid {
     grid-template-columns: 1fr;
+
+    gap: 1.5rem;
   }
 
   .video-story--right .story-copy {
     grid-column: 1;
   }
 
+  .story-copy h2 {
+    font-size:
+      clamp(
+        2.8rem,
+        8vw,
+        5rem
+      );
+  }
+
+
+  /* =======================================================
+     VERTICAL VIDEO
+     ======================================================= */
+
   .video-story--vertical {
-    min-height: 50rem;
+    min-height: 48rem;
   }
 
   .video-story--vertical .story-video--background {
@@ -83,7 +245,7 @@
     transform: scale(1.04);
 
     filter:
-      blur(10px)
+      blur(7px)
       saturate(.92)
       brightness(.54);
   }
@@ -105,7 +267,11 @@
     width: 40%;
     height: 80%;
 
-    transform: translate(14px, 14px);
+    transform:
+      translate(
+        14px,
+        14px
+      );
   }
 
   .video-story--vertical::before {
@@ -126,7 +292,7 @@
 
     align-items: center;
 
-    min-height: 50rem;
+    min-height: 48rem;
   }
 
   .video-story--vertical .story-index {
@@ -139,7 +305,7 @@
     grid-row: auto;
 
     width: auto;
-    max-width: 32rem;
+    max-width: 30rem;
 
     margin-bottom: 0;
     padding: 0;
@@ -155,7 +321,12 @@
   .video-story--vertical .story-copy h2 {
     max-width: 8.5ch;
 
-    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    font-size:
+      clamp(
+        2.7rem,
+        6.5vw,
+        4.5rem
+      );
   }
 
   .video-story--vertical .story-grid::after {
@@ -163,7 +334,9 @@
   }
 
 
-  /* Property layout */
+  /* =======================================================
+     PROPERTIES
+     ======================================================= */
 
   .property-card--1,
   .property-card--2,
@@ -190,15 +363,26 @@
     margin-top: 4rem;
   }
 
+  .property-image-link {
+    touch-action: manipulation;
+  }
 
-  /* Intent */
+  .property-space-selector {
+    overscroll-behavior-inline:
+      contain;
+  }
+
+
+  /* =======================================================
+     INTENT
+     ======================================================= */
 
   .intent-section {
     grid-template-columns: 1fr;
   }
 
   .intent-panel {
-    min-height: 34rem;
+    min-height: 31rem;
 
     border-right: 0;
 
@@ -206,44 +390,248 @@
       1px solid
       rgba(255, 255, 255, .22);
   }
+
+  .intent-copy h2 {
+    font-size:
+      clamp(
+        2.8rem,
+        8vw,
+        4.8rem
+      );
+  }
+
+
+  /* =======================================================
+     LOCATIONS
+     ======================================================= */
+
+  .locations-grid {
+    gap:
+      clamp(
+        2.5rem,
+        6vw,
+        4rem
+      );
+  }
+
+  .locations-content {
+    max-width: 38rem;
+  }
+
+
+  /* =======================================================
+     LOADERS
+     ======================================================= */
+
+  .cinematic-loader-inner,
+  .property-navigation-loader-inner {
+    width:
+      min(
+        24rem,
+        calc(100% - 3rem)
+      );
+  }
+
+  .story-loading > div {
+    width:
+      min(
+        22rem,
+        calc(100vw - 4rem)
+      );
+  }
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   MOBILE
    ========================================================= */
 
 @media (max-width: 640px) {
 
+  :root {
+    --pad:
+      clamp(
+        1.15rem,
+        5vw,
+        1.5rem
+      );
+  }
+
+
+  /* =======================================================
+     HEADER
+     ======================================================= */
+
+  .site-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .brand {
+    font-size: .92rem;
+  }
+
+  .menu-button {
+    gap: .4rem;
+
+    min-height: 2.75rem;
+
+    font-size: .67rem;
+  }
+
+
+  /* =======================================================
+     HERO
+     ======================================================= */
+
   .hero {
-    min-height: 46rem;
+    min-height: 42rem;
   }
 
   .hero-content {
-    min-height: 46rem;
+    min-height: 42rem;
 
-    padding-bottom: 2rem;
+    gap: 1.5rem;
+
+    padding-top: 6rem;
+    padding-bottom: 1.75rem;
   }
 
   .hero-title {
+    max-width: 8.7ch;
+
     font-size:
-      clamp(3.15rem, 15vw, 5rem);
+      clamp(
+        2.9rem,
+        12.5vw,
+        4.4rem
+      );
+
+    line-height: .86;
+
+    letter-spacing: -.06em;
+  }
+
+  .hero-side {
+    gap: .75rem;
+  }
+
+  .hero-side-copy {
+    max-width: 26rem;
+
+    font-size: .91rem;
+
+    line-height: 1.5;
   }
 
   .hero-index {
     display: none;
   }
 
+
+  /* =======================================================
+     SECTION TYPOGRAPHY
+     ======================================================= */
+
   .section-display {
+    max-width: 10ch;
+
     font-size:
-      clamp(2.6rem, 13vw, 4.5rem);
+      clamp(
+        2.45rem,
+        10vw,
+        3.75rem
+      );
+
+    line-height: .94;
+
+    letter-spacing: -.055em;
+  }
+
+  .section-intro {
+    font-size: .94rem;
+
+    line-height: 1.6;
   }
 
 
-  /* Dual video vertical */
+  /* =======================================================
+     MANIFESTO
+     ======================================================= */
+
+  .manifesto {
+    padding-block:
+      4.5rem;
+  }
+
+  .manifesto-grid {
+    margin-top: 3rem;
+  }
+
+  .manifesto-item,
+  .manifesto-item + .manifesto-item {
+    padding:
+      1.7rem
+      0
+      2.7rem;
+  }
+
+  .manifesto-item h3 {
+    margin-top: 2.7rem;
+
+    font-size:
+      clamp(
+        1.7rem,
+        7.5vw,
+        2.6rem
+      );
+  }
+
+  .manifesto-item p {
+    font-size: .92rem;
+  }
+
+
+  /* =======================================================
+     VIDEO STORIES
+     ======================================================= */
+
+  .video-story {
+    min-height: 40rem;
+  }
+
+  .story-grid {
+    padding:
+      3rem
+      var(--pad);
+  }
+
+  .story-copy h2 {
+    max-width: 9ch;
+
+    font-size:
+      clamp(
+        2.45rem,
+        11vw,
+        3.8rem
+      );
+
+    line-height: .92;
+  }
+
+  .story-copy > p:not(.eyebrow) {
+    font-size: .92rem;
+
+    line-height: 1.55;
+  }
+
+
+  /* =======================================================
+     DUAL VERTICAL VIDEO
+     ======================================================= */
 
   .video-story--vertical {
-    min-height: 46rem;
+    min-height: 43rem;
   }
 
   .video-story--vertical .story-video--background {
@@ -255,18 +643,18 @@
     object-position: center 38%;
 
     filter:
-      blur(9px)
+      blur(6px)
       saturate(.92)
       brightness(.52);
   }
 
   .video-story--vertical .story-video--foreground {
-    top: 7%;
+    top: 6%;
     right: 5%;
     left: auto;
 
-    width: 46%;
-    height: 42%;
+    width: 48%;
+    height: 40%;
 
     object-position: center 34%;
 
@@ -274,23 +662,27 @@
   }
 
   .video-story--vertical::after {
-    top: 9%;
+    top: 8%;
     right: 8%;
 
-    width: 42%;
-    height: 39%;
+    width: 43%;
+    height: 37%;
 
-    transform: translate(10px, 10px);
+    transform:
+      translate(
+        8px,
+        8px
+      );
   }
 
   .video-story--vertical::before {
     background:
       linear-gradient(
         180deg,
-        rgba(5, 7, 6, .22) 0%,
-        rgba(5, 7, 6, .28) 34%,
-        rgba(5, 7, 6, .78) 72%,
-        rgba(5, 7, 6, .92) 100%
+        rgba(5, 7, 6, .18) 0%,
+        rgba(5, 7, 6, .30) 32%,
+        rgba(5, 7, 6, .80) 68%,
+        rgba(5, 7, 6, .94) 100%
       );
   }
 
@@ -299,14 +691,16 @@
 
     align-items: end;
 
-    min-height: 46rem;
+    min-height: 43rem;
+
+    padding-top: 19rem;
   }
 
   .video-story--vertical .story-copy {
     grid-column: 1;
 
     width: 100%;
-    max-width: 33rem;
+    max-width: 30rem;
 
     padding: 0;
   }
@@ -314,76 +708,360 @@
   .video-story--vertical .story-copy h2 {
     max-width: 9ch;
 
-    font-size: clamp(2.55rem, 13vw, 4.1rem);
+    font-size:
+      clamp(
+        2.35rem,
+        10.5vw,
+        3.6rem
+      );
   }
 
-  .video-story--vertical .story-copy > p:not(.eyebrow) {
-    font-size: .94rem;
+  .video-story--vertical
+  .story-copy
+  > p:not(.eyebrow) {
+    font-size: .91rem;
   }
 
   .video-story--vertical .text-link {
-    min-width: 12rem;
-    width: fit-content;
+    min-width: 0;
+
+    width: min(
+      13rem,
+      100%
+    );
   }
 
 
-  /* Properties */
+  /* =======================================================
+     PROPERTIES
+     ======================================================= */
+
+  .properties-section {
+    padding-block:
+      4.5rem;
+  }
 
   .property-grid {
     display: block;
+
+    margin-top: 3.5rem;
   }
 
   .property-card + .property-card {
-    margin-top: 4rem;
+    margin-top: 4.5rem;
   }
 
-  .property-card--2 .property-image-link > img {
+  .property-card--2,
+  .property-card--3 {
+    margin-top: 0;
+  }
+
+  .property-image-link > img,
+  .property-card--2
+  .property-image-link
+  > img {
     aspect-ratio: 4 / 3;
   }
 
   .property-info {
     grid-template-columns: 1fr;
 
-    gap: 1rem;
+    gap: .8rem;
+
+    margin-top: .9rem;
+  }
+
+  .property-info h3 {
+    font-size:
+      clamp(
+        1.45rem,
+        7vw,
+        2rem
+      );
   }
 
   .property-numbers {
     text-align: left;
   }
 
+  .property-numbers span {
+    line-height: 1.5;
+  }
+
+  .property-space-selector {
+    gap: .4rem;
+
+    margin-top: .6rem;
+  }
+
   .property-space {
-    width: 4.8rem;
+    width: 4.6rem;
+  }
+
+  .property-space span {
+    font-size: .52rem;
+
+    letter-spacing: .08em;
   }
 
   .property-image-category {
-    top: .75rem;
-    left: .75rem;
+    top: .7rem;
+    left: .7rem;
+
+    padding:
+      .42rem
+      .58rem;
+
+    font-size: .58rem;
   }
 
   .property-image-counter {
-    top: .85rem;
-    right: .75rem;
+    top: .78rem;
+    right: .7rem;
+
+    font-size: .58rem;
   }
 
-  .property-gallery-controls {
-    left: .75rem;
-    bottom: .75rem;
-  }
+  .property-gallery-hint {
+    margin-top: .6rem;
 
-  .property-arrow {
-    right: .75rem;
-    bottom: .75rem;
+    font-size: .61rem;
   }
 
 
-  /* Footer */
+  /* New lateral arrows */
+
+  .property-gallery-side {
+    width: 16%;
+    min-width: 3.4rem;
+
+    opacity: .68;
+  }
+
+  .property-gallery-side::before {
+    width: 2.65rem;
+    height: 2.65rem;
+  }
+
+  .property-gallery-side svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+
+  /* =======================================================
+     INTENT
+     ======================================================= */
+
+  .intent-panel {
+    min-height: 27rem;
+
+    padding:
+      1.5rem
+      var(--pad);
+  }
+
+  .intent-number {
+    top: 1.4rem;
+    left: var(--pad);
+  }
+
+  .intent-copy h2 {
+    font-size:
+      clamp(
+        2.5rem,
+        11vw,
+        3.7rem
+      );
+  }
+
+  .intent-copy p {
+    max-width: 21rem;
+
+    font-size: .92rem;
+
+    line-height: 1.55;
+  }
+
+  .round-action {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    margin-top: 1.2rem;
+  }
+
+
+  /* =======================================================
+     LOCATIONS
+     ======================================================= */
+
+  .locations-section {
+    padding-block: 5rem;
+  }
+
+  .locations-copy {
+    margin-top: 1.5rem;
+
+    font-size: .94rem;
+  }
+
+  .place-list {
+    margin-top: 2rem;
+  }
+
+  .place-button {
+    min-height: 2.75rem;
+  }
+
+
+  /* =======================================================
+     FOOTER
+     ======================================================= */
+
+  .footer {
+    padding-block:
+      4.5rem
+      2rem;
+  }
 
   .footer-grid {
     grid-template-columns: 1fr;
 
     align-items: start;
 
-    gap: 3rem;
+    gap: 2.5rem;
+  }
+
+  .footer h2 {
+    max-width: 8ch;
+
+    font-size:
+      clamp(
+        2.7rem,
+        11vw,
+        4rem
+      );
+
+    line-height: .9;
+  }
+
+
+  /* =======================================================
+     LOADERS
+     ======================================================= */
+
+  .cinematic-loader-inner,
+  .property-navigation-loader-inner {
+    gap: .9rem;
+
+    width:
+      min(
+        19rem,
+        calc(100% - 3rem)
+      );
+  }
+
+  .cinematic-loader-brand,
+  .property-navigation-loader-brand {
+    font-size: .9rem;
+  }
+
+  .cinematic-loader-label,
+  .property-navigation-loader-label {
+    font-size: .62rem;
+  }
+
+  .cinematic-loader-line,
+  .property-navigation-loader-line {
+    height: 4px;
+  }
+
+  .story-loading > div {
+    width:
+      min(
+        18rem,
+        calc(100vw - 3rem)
+      );
+
+    height: 4px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   360 / 390
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+  .hero {
+    min-height: 40rem;
+  }
+
+  .hero-content {
+    min-height: 40rem;
+
+    padding-top: 5.5rem;
+  }
+
+  .hero-title {
+    font-size:
+      clamp(
+        2.7rem,
+        12vw,
+        3.5rem
+      );
+  }
+
+  .hero-side-copy {
+    font-size: .88rem;
+  }
+
+  .section-display {
+    font-size:
+      clamp(
+        2.25rem,
+        10vw,
+        3.25rem
+      );
+  }
+
+  .story-copy h2,
+  .video-story--vertical
+  .story-copy h2 {
+    font-size:
+      clamp(
+        2.2rem,
+        10vw,
+        3.1rem
+      );
+  }
+
+  .property-space {
+    width: 4.25rem;
+  }
+
+  .intent-panel {
+    min-height: 25rem;
+  }
+
+  .intent-copy h2 {
+    font-size:
+      clamp(
+        2.35rem,
+        10.5vw,
+        3.25rem
+      );
+  }
+
+  .footer h2 {
+    font-size:
+      clamp(
+        2.5rem,
+        10vw,
+        3.5rem
+      );
   }
 }
 
@@ -392,30 +1070,43 @@
    TOUCH DEVICES
    ========================================================= */
 
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
+
+  .property-image-category,
+  .property-gallery-side::before,
+  .place-button,
+  .property-map-label {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 
   .property-space {
-    opacity: .72;
+    opacity: .76;
   }
 
   .property-space--active {
     opacity: 1;
   }
 
-  .property-gallery-button:hover {
-    color: white;
+  .property-gallery-side {
+    opacity: .72;
+  }
 
-    background:
-      rgba(8, 8, 8, .35);
-
+  .property-gallery-side:hover::before {
     transform: none;
   }
 
-  .property-arrow:hover {
+  .property-gallery-side--previous:hover svg,
+  .property-gallery-side--next:hover svg {
     transform: none;
+  }
 
-    background:
-      rgba(244, 242, 237, .94);
+  .round-action:hover {
+    color: white;
+
+    background: transparent;
+
+    transform: none;
   }
 }
 
@@ -444,5 +1135,25 @@
 
     scroll-behavior:
       auto !important;
+  }
+}
+
+/* =========================================================
+   MOBILE PERFORMANCE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .video-story--vertical .story-video--foreground {
+    box-shadow:
+      0 16px 40px
+      rgba(0, 0, 0, .24);
+  }
+
+  .locations-section::before {
+    filter:
+      blur(8px)
+      saturate(.72)
+      brightness(.94);
   }
 }

@@ -1,5 +1,5 @@
 /* =========================================================
-   GRID
+   LOCATIONS GRID
    ========================================================= */
 
 .locations-grid {
@@ -13,22 +13,22 @@
 
   gap:
     clamp(3rem, 7vw, 8rem);
+
+  width: min(100%, 1600px);
 }
 
 .locations-content {
   max-width: 38rem;
 }
 
-.locations-section
-.eyebrow {
+.locations-section .eyebrow {
   color: #8a7359;
 }
 
-.locations-section
-.section-display {
-  color: #161613;
-
+.locations-section .section-display {
   max-width: 9ch;
+
+  color: #161613;
 }
 
 .locations-copy {
@@ -42,229 +42,6 @@
     clamp(.98rem, 1.15vw, 1.08rem);
 
   line-height: 1.7;
-}
-
-
-/* =========================================================
-   LOCATION PILLS
-   ========================================================= */
-
-.place-list {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: .65rem;
-
-  margin-top: 2.5rem;
-}
-
-.place-list span {
-  padding:
-    .72rem
-    1rem;
-
-  border:
-    1px solid
-    rgba(20, 20, 18, .16);
-
-  border-radius: 999px;
-
-  color: #34312d;
-
-  background:
-    rgba(255, 255, 255, .30);
-
-  backdrop-filter:
-    blur(8px);
-
-  -webkit-backdrop-filter:
-    blur(8px);
-
-  font-size: .7rem;
-
-  letter-spacing: .1em;
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   MAP TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .locations-grid {
-    grid-template-columns: 1fr;
-
-    gap: 3rem;
-  }
-
-  .locations-content {
-    max-width: 44rem;
-  }
-
-  .locations-section
-  .section-display {
-    max-width: 11ch;
-  }
-
-  .google-property-map-shell {
-    min-height: 34rem;
-  }
-}
-
-
-/* =========================================================
-   MAP MOBILE
-   ========================================================= */
-
-@media (max-width: 640px) {
-
-  .locations-section {
-    padding-block:
-      5.5rem;
-  }
-
-  .google-property-map-shell {
-    min-height: 28rem;
-
-    border-radius: 1rem;
-  }
-
-  .google-property-map-label {
-    right: .85rem;
-    bottom: .85rem;
-    left: .85rem;
-
-    min-width: 0;
-  }
-}
-
-
-/* =========================================================
-   LEAFLET VISUAL CLEANUP
-   ========================================================= */
-
-.property-map-shell
-.leaflet-container {
-  font-family: inherit;
-}
-
-.property-map-shell
-.leaflet-control-zoom {
-  overflow: hidden;
-
-  border: 0;
-
-  border-radius: .8rem;
-
-  box-shadow:
-    0 10px 30px
-    rgba(0, 0, 0, .12);
-}
-
-.property-map-shell
-.leaflet-control-zoom a {
-  display: grid;
-
-  place-items: center;
-
-  width: 2.7rem;
-  height: 2.7rem;
-
-  border: 0;
-
-  color: #171714;
-
-  background:
-    rgba(245, 242, 236, .92);
-
-  font-size: 1.1rem;
-}
-
-.property-map-shell
-.leaflet-control-attribution {
-  padding:
-    .25rem
-    .45rem;
-
-  color: #706b62;
-
-  background:
-    rgba(245, 242, 236, .78);
-
-  backdrop-filter:
-    blur(10px);
-
-  font-size: .58rem;
-}
-
-
-/* =========================================================
-   MAP LABEL
-   ========================================================= */
-
-.property-map-label {
-  position: absolute;
-
-  z-index: 500;
-
-  left: 1.25rem;
-  bottom: 1.25rem;
-
-  display: grid;
-
-  gap: .35rem;
-
-  min-width: 13rem;
-
-  padding:
-    1rem
-    1.15rem;
-
-  border:
-    1px solid
-    rgba(255, 255, 255, .55);
-
-  border-radius: 1rem;
-
-  color: #171714;
-
-  background:
-    rgba(245, 242, 236, .82);
-
-  backdrop-filter:
-    blur(16px);
-
-  -webkit-backdrop-filter:
-    blur(16px);
-
-  box-shadow:
-    0 14px 40px
-    rgba(30, 27, 23, .12);
-
-  pointer-events: none;
-}
-
-.property-map-label span {
-  color: #82766a;
-
-  font-size: .6rem;
-
-  letter-spacing: .15em;
-
-  text-transform: uppercase;
-}
-
-.property-map-label strong {
-  font-size:
-    clamp(1rem, 1.3vw, 1.25rem);
-
-  font-weight: 500;
-
-  letter-spacing: -.025em;
 }
 
 
@@ -283,6 +60,8 @@
 }
 
 .place-button {
+  min-height: 2.75rem;
+
   padding:
     .72rem
     1rem;
@@ -298,11 +77,8 @@
   background:
     rgba(255, 255, 255, .30);
 
-  backdrop-filter:
-    blur(8px);
-
-  -webkit-backdrop-filter:
-    blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   cursor: pointer;
 
@@ -317,11 +93,12 @@
     background .3s ease,
     border-color .3s ease,
     transform .3s var(--ease);
+
+  touch-action: manipulation;
 }
 
 .place-button:hover {
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   background:
     rgba(255, 255, 255, .52);
@@ -330,67 +107,9 @@
 .place-button--active {
   color: #f4f2ed;
 
-  border-color:
-    #171714;
+  border-color: #171714;
 
-  background:
-    #171714;
-}
-
-
-/* =========================================================
-   MAP RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .property-map-shell,
-  .property-map {
-    min-height: 34rem;
-    height: 34rem;
-  }
-}
-
-@media (max-width: 640px) {
-
-  .property-map-shell,
-  .property-map {
-    min-height: 28rem;
-    height: 28rem;
-  }
-
-  .property-map-shell {
-    border-radius: 1rem;
-  }
-
-  .property-map-label {
-    right: .85rem;
-    bottom: .85rem;
-    left: .85rem;
-
-    min-width: 0;
-  }
-}
-
-
-/* =========================================================
-   FIX — LEAFLET MAP LAYOUT
-   ========================================================= */
-
-.locations-grid {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 4.5fr)
-    minmax(0, 7.5fr);
-
-  align-items: center;
-
-  gap:
-    clamp(3rem, 7vw, 8rem);
-
-  width:
-    min(100%, 1600px);
+  background: #171714;
 }
 
 
@@ -446,8 +165,9 @@
   background: #d4dbd0;
 }
 
-
-/* Leaflet panes */
+.property-map-shell .leaflet-container {
+  font-family: inherit;
+}
 
 .property-map-shell .leaflet-pane,
 .property-map-shell .leaflet-map-pane {
@@ -473,6 +193,9 @@
 
   min-width: 13rem;
 
+  max-width:
+    calc(100% - 2.5rem);
+
   padding:
     1rem
     1.15rem;
@@ -488,11 +211,8 @@
   background:
     rgba(241, 244, 237, .84);
 
-  backdrop-filter:
-    blur(16px);
-
-  -webkit-backdrop-filter:
-    blur(16px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   box-shadow:
     0 14px 40px
@@ -512,12 +232,16 @@
 }
 
 .property-map-label strong {
+  min-width: 0;
+
   font-size:
     clamp(1rem, 1.3vw, 1.25rem);
 
   font-weight: 500;
 
   letter-spacing: -.025em;
+
+  overflow-wrap: anywhere;
 }
 
 
@@ -525,15 +249,13 @@
    LEAFLET CONTROLS
    ========================================================= */
 
-.property-map-shell
-.leaflet-control-container {
+.property-map-shell .leaflet-control-container {
   position: relative;
 
   z-index: 400;
 }
 
-.property-map-shell
-.leaflet-control-zoom {
+.property-map-shell .leaflet-control-zoom {
   overflow: hidden;
 
   border: 0;
@@ -545,14 +267,13 @@
     rgba(0, 0, 0, .12);
 }
 
-.property-map-shell
-.leaflet-control-zoom a {
+.property-map-shell .leaflet-control-zoom a {
   display: grid;
 
   place-items: center;
 
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 2.75rem;
+  height: 2.75rem;
 
   border: 0;
 
@@ -560,10 +281,14 @@
 
   background:
     rgba(245, 247, 241, .94);
+
+  font-size: 1.1rem;
 }
 
-.property-map-shell
-.leaflet-control-attribution {
+.property-map-shell .leaflet-control-attribution {
+  max-width:
+    calc(100% - 1rem);
+
   padding:
     .25rem
     .45rem;
@@ -573,11 +298,8 @@
   background:
     rgba(242, 245, 238, .82);
 
-  backdrop-filter:
-    blur(10px);
-
-  -webkit-backdrop-filter:
-    blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   font-size: .58rem;
 }
@@ -593,6 +315,14 @@
     grid-template-columns: 1fr;
 
     gap: 3rem;
+  }
+
+  .locations-content {
+    max-width: 44rem;
+  }
+
+  .locations-section .section-display {
+    max-width: 11ch;
   }
 
   .property-map-shell {
@@ -614,24 +344,106 @@
 
 @media (max-width: 640px) {
 
-  .property-map-shell {
-    height: 28rem;
+  .locations-section {
+    padding-block: 5.5rem;
+  }
 
-    min-height: 28rem;
+  .place-list {
+    gap: .5rem;
+
+    margin-top: 2rem;
+  }
+
+  .place-button {
+    padding:
+      .65rem
+      .85rem;
+
+    font-size: .64rem;
+  }
+
+  .property-map-shell {
+    height: 27rem;
+
+    min-height: 27rem;
 
     border-radius: 1rem;
   }
 
   .property-map,
   .property-map-shell .leaflet-container {
-    min-height: 28rem;
+    min-height: 27rem;
+  }
+
+  /*
+   * En mobile, cuando el dedo empieza dentro del mapa,
+   * el gesto pertenece al mapa y no al scroll de la página.
+   * Así se puede arrastrar Leaflet con normalidad.
+   */
+  .property-map-shell .leaflet-container {
+    touch-action: none;
+    overscroll-behavior: contain;
   }
 
   .property-map-label {
-    right: .85rem;
-    bottom: .85rem;
-    left: .85rem;
+    right: .75rem;
+    bottom: .75rem;
+    left: .75rem;
 
     min-width: 0;
+    max-width: none;
+
+    padding:
+      .85rem
+      .95rem;
+  }
+
+  .property-map-shell .leaflet-control-zoom a {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .property-map-shell .leaflet-control-attribution {
+    font-size: .5rem;
+  }
+}
+
+
+@media (max-width: 390px) {
+
+  .property-map-shell {
+    height: 24rem;
+
+    min-height: 24rem;
+  }
+
+  .property-map,
+  .property-map-shell .leaflet-container {
+    min-height: 24rem;
+  }
+
+  .property-map-label {
+    right: .65rem;
+    bottom: .65rem;
+    left: .65rem;
+  }
+}
+
+
+@media (hover: none), (pointer: coarse) {
+
+  .place-button:hover {
+    transform: none;
+
+    background:
+      rgba(255, 255, 255, .30);
+  }
+
+  .place-button--active:hover {
+    background: #171714;
+  }
+
+  .property-map-shell .leaflet-container {
+    touch-action: none;
   }
 }

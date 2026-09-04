@@ -1,4 +1,8 @@
-import { useState } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 interface VideoStorySectionProps {
   src: string
@@ -19,13 +23,55 @@ export function VideoStorySection({
   align = 'left',
   variant = 'default',
 }: VideoStorySectionProps) {
+  const sectionRef =
+    useRef<HTMLElement>(null)
+
+  const [shouldLoadVideo, setShouldLoadVideo] =
+    useState<boolean>(false)
+
   const [isPrimaryReady, setIsPrimaryReady] =
     useState<boolean>(false)
 
-  const isVertical = variant === 'vertical'
+  const isVertical =
+    variant === 'vertical'
+
+  useEffect(() => {
+    const section = sectionRef.current
+
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return
+        }
+
+        setShouldLoadVideo(true)
+
+        observer.disconnect()
+      },
+      {
+        /*
+         * El video empieza a prepararse antes
+         * de llegar visualmente a la sección,
+         * pero ya no compite con el Hero al
+         * cargar toda la Home.
+         */
+        rootMargin: '600px 0px',
+        threshold: 0.01,
+      },
+    )
+
+    observer.observe(section)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <section
+      ref={sectionRef}
       className={[
         'video-story',
         align === 'right'
@@ -38,46 +84,48 @@ export function VideoStorySection({
         .filter(Boolean)
         .join(' ')}
     >
-      {isVertical ? (
-        <>
-          {isPrimaryReady && (
+      {shouldLoadVideo && (
+        isVertical ? (
+          <>
+            {isPrimaryReady && (
+              <video
+                className="story-video story-video--background"
+                src={src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+              />
+            )}
+
             <video
-              className="story-video story-video--background"
+              className="story-video story-video--foreground"
               src={src}
               autoPlay
               muted
               loop
               playsInline
               preload="metadata"
+              onPlaying={() => {
+                setIsPrimaryReady(true)
+              }}
               aria-hidden="true"
             />
-          )}
-
+          </>
+        ) : (
           <video
-            className="story-video story-video--foreground"
+            className="story-video"
             src={src}
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
-            onLoadedData={() =>
-              setIsPrimaryReady(true)
-            }
+            preload="metadata"
             aria-hidden="true"
           />
-        </>
-      ) : (
-        <video
-          className="story-video"
-          src={src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        />
+        )
       )}
 
       <div

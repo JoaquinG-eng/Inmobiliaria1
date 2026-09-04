@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowDownRight,
   Menu,
@@ -43,21 +43,113 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] =
     useState<boolean>(false)
 
+  const menuButtonRef =
+    useRef<HTMLButtonElement>(null)
+
+  const closeButtonRef =
+    useRef<HTMLButtonElement>(null)
+
+  const menuPanelRef =
+    useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     if (!isMenuOpen) {
       return
     }
 
-    const previousOverflow =
+    const previousBodyOverflow =
       document.body.style.overflow
 
-    document.body.style.overflow = 'hidden'
+    const previousHtmlOverflow =
+      document.documentElement.style.overflow
+
+    const previousPaddingRight =
+      document.body.style.paddingRight
+
+    const scrollbarWidth =
+      window.innerWidth -
+      document.documentElement.clientWidth
+
+    document.body.style.overflow =
+      'hidden'
+
+    document.documentElement.style.overflow =
+      'hidden'
+
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight =
+        `${scrollbarWidth}px`
+    }
+
+    window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus()
+    })
 
     const handleKeyDown = (
       event: KeyboardEvent,
     ): void => {
       if (event.key === 'Escape') {
         setIsMenuOpen(false)
+
+        window.requestAnimationFrame(() => {
+          menuButtonRef.current?.focus()
+        })
+
+        return
+      }
+
+      if (event.key !== 'Tab') {
+        return
+      }
+
+      const panel = menuPanelRef.current
+
+      if (!panel) {
+        return
+      }
+
+      const focusableElements =
+        Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            [
+              'button:not([disabled])',
+              'a[href]',
+              'input:not([disabled])',
+              'select:not([disabled])',
+              'textarea:not([disabled])',
+              '[tabindex]:not([tabindex="-1"])',
+            ].join(','),
+          ),
+        )
+
+      if (focusableElements.length === 0) {
+        event.preventDefault()
+        return
+      }
+
+      const first =
+        focusableElements[0]
+
+      const last =
+        focusableElements[
+          focusableElements.length - 1
+        ]
+
+      if (
+        event.shiftKey &&
+        document.activeElement === first
+      ) {
+        event.preventDefault()
+        last.focus()
+        return
+      }
+
+      if (
+        !event.shiftKey &&
+        document.activeElement === last
+      ) {
+        event.preventDefault()
+        first.focus()
       }
     }
 
@@ -68,7 +160,13 @@ export function SiteHeader() {
 
     return () => {
       document.body.style.overflow =
-        previousOverflow
+        previousBodyOverflow
+
+      document.documentElement.style.overflow =
+        previousHtmlOverflow
+
+      document.body.style.paddingRight =
+        previousPaddingRight
 
       window.removeEventListener(
         'keydown',
@@ -76,6 +174,14 @@ export function SiteHeader() {
       )
     }
   }, [isMenuOpen])
+
+  const closeMenu = (): void => {
+    setIsMenuOpen(false)
+
+    window.requestAnimationFrame(() => {
+      menuButtonRef.current?.focus()
+    })
+  }
 
   const navigateTo = (
     selector: string,
@@ -89,7 +195,11 @@ export function SiteHeader() {
         )
 
       target?.scrollIntoView({
-        behavior: 'smooth',
+        behavior: window.matchMedia(
+          '(prefers-reduced-motion: reduce)',
+        ).matches
+          ? 'auto'
+          : 'smooth',
         block: 'start',
       })
     })
@@ -107,7 +217,10 @@ export function SiteHeader() {
           aria-label="Volver al inicio"
         >
           ESTUDIO
-          <span className="brand-dot">
+          <span
+            className="brand-dot"
+            aria-hidden="true"
+          >
             .
           </span>
         </button>
@@ -151,9 +264,14 @@ export function SiteHeader() {
         </nav>
 
         <button
+          ref={menuButtonRef}
           type="button"
           className="menu-button"
-          aria-label="Abrir menú"
+          aria-label={
+            isMenuOpen
+              ? 'Menú abierto'
+              : 'Abrir menú'
+          }
           aria-expanded={isMenuOpen}
           aria-controls="main-menu"
           onClick={() =>
@@ -165,6 +283,7 @@ export function SiteHeader() {
           <Menu
             size={17}
             strokeWidth={1.5}
+            aria-hidden="true"
           />
         </button>
       </header>
@@ -181,36 +300,45 @@ export function SiteHeader() {
           .join(' ')}
         aria-hidden={!isMenuOpen}
       >
-        <div
+        <button
+          type="button"
           className="main-menu-backdrop"
-          aria-hidden="true"
-          onClick={() =>
-            setIsMenuOpen(false)
-          }
+          aria-label="Cerrar menú"
+          tabIndex={isMenuOpen ? 0 : -1}
+          onClick={closeMenu}
         />
 
-        <div className="main-menu-panel">
+        <div
+          ref={menuPanelRef}
+          className="main-menu-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú principal"
+        >
           <header className="main-menu-header">
             <span className="main-menu-brand">
               ESTUDIO
-              <span className="brand-dot">
+              <span
+                className="brand-dot"
+                aria-hidden="true"
+              >
                 .
               </span>
             </span>
 
             <button
+              ref={closeButtonRef}
               type="button"
               className="main-menu-close"
               aria-label="Cerrar menú"
-              onClick={() =>
-                setIsMenuOpen(false)
-              }
+              onClick={closeMenu}
             >
               Cerrar
 
               <X
                 size={18}
                 strokeWidth={1.4}
+                aria-hidden="true"
               />
             </button>
           </header>
@@ -250,6 +378,7 @@ export function SiteHeader() {
                       className="main-menu-item-arrow"
                       size={28}
                       strokeWidth={1.1}
+                      aria-hidden="true"
                     />
                   </button>
                 ),
